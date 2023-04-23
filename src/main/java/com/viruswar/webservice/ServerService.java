@@ -27,30 +27,15 @@ public interface ServerService {
 
     /**
      * 
-     * @param arg0
      * @return
-     *     returns com.viruswar.webservice.ServerResponseDto
+     *     returns boolean
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "run", targetNamespace = "http://communication.server.viruswar.com/", className = "com.viruswar.webservice.Run")
-    @ResponseWrapper(localName = "runResponse", targetNamespace = "http://communication.server.viruswar.com/", className = "com.viruswar.webservice.RunResponse")
-    @Action(input = "http://communication.server.viruswar.com/ServerService/runRequest", output = "http://communication.server.viruswar.com/ServerService/runResponse")
-    public ServerResponseDto run(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0);
-
-    /**
-     * 
-     * @param arg0
-     */
-    @WebMethod
-    @RequestWrapper(localName = "sendCommandToCross", targetNamespace = "http://communication.server.viruswar.com/", className = "com.viruswar.webservice.SendCommandToCross")
-    @ResponseWrapper(localName = "sendCommandToCrossResponse", targetNamespace = "http://communication.server.viruswar.com/", className = "com.viruswar.webservice.SendCommandToCrossResponse")
-    @Action(input = "http://communication.server.viruswar.com/ServerService/sendCommandToCrossRequest", output = "http://communication.server.viruswar.com/ServerService/sendCommandToCrossResponse")
-    public void sendCommandToCross(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0);
+    @RequestWrapper(localName = "checkGameEnded", targetNamespace = "http://communication.server.viruswar.com/", className = "com.viruswar.webservice.CheckGameEnded")
+    @ResponseWrapper(localName = "checkGameEndedResponse", targetNamespace = "http://communication.server.viruswar.com/", className = "com.viruswar.webservice.CheckGameEndedResponse")
+    @Action(input = "http://communication.server.viruswar.com/ServerService/checkGameEndedRequest", output = "http://communication.server.viruswar.com/ServerService/checkGameEndedResponse")
+    public boolean checkGameEnded();
 
     /**
      * 
@@ -79,18 +64,6 @@ public interface ServerService {
     /**
      * 
      * @param arg0
-     */
-    @WebMethod
-    @RequestWrapper(localName = "sendCommandToRound", targetNamespace = "http://communication.server.viruswar.com/", className = "com.viruswar.webservice.SendCommandToRound")
-    @ResponseWrapper(localName = "sendCommandToRoundResponse", targetNamespace = "http://communication.server.viruswar.com/", className = "com.viruswar.webservice.SendCommandToRoundResponse")
-    @Action(input = "http://communication.server.viruswar.com/ServerService/sendCommandToRoundRequest", output = "http://communication.server.viruswar.com/ServerService/sendCommandToRoundResponse")
-    public void sendCommandToRound(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0);
-
-    /**
-     * 
-     * @param arg0
      * @return
      *     returns boolean
      */
@@ -106,33 +79,6 @@ public interface ServerService {
     /**
      * 
      * @return
-     *     returns boolean
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "checkGameEnded", targetNamespace = "http://communication.server.viruswar.com/", className = "com.viruswar.webservice.CheckGameEnded")
-    @ResponseWrapper(localName = "checkGameEndedResponse", targetNamespace = "http://communication.server.viruswar.com/", className = "com.viruswar.webservice.CheckGameEndedResponse")
-    @Action(input = "http://communication.server.viruswar.com/ServerService/checkGameEndedRequest", output = "http://communication.server.viruswar.com/ServerService/checkGameEndedResponse")
-    public boolean checkGameEnded();
-
-    /**
-     * 
-     * @param arg1
-     * @param arg0
-     */
-    @WebMethod
-    @RequestWrapper(localName = "changeMovesPermitFlags", targetNamespace = "http://communication.server.viruswar.com/", className = "com.viruswar.webservice.ChangeMovesPermitFlags")
-    @ResponseWrapper(localName = "changeMovesPermitFlagsResponse", targetNamespace = "http://communication.server.viruswar.com/", className = "com.viruswar.webservice.ChangeMovesPermitFlagsResponse")
-    @Action(input = "http://communication.server.viruswar.com/ServerService/changeMovesPermitFlagsRequest", output = "http://communication.server.viruswar.com/ServerService/changeMovesPermitFlagsResponse")
-    public void changeMovesPermitFlags(
-        @WebParam(name = "arg0", targetNamespace = "")
-        boolean arg0,
-        @WebParam(name = "arg1", targetNamespace = "")
-        boolean arg1);
-
-    /**
-     * 
-     * @return
      *     returns java.util.List<com.viruswar.webservice.MadeCommandsDto>
      */
     @WebMethod
@@ -141,6 +87,21 @@ public interface ServerService {
     @ResponseWrapper(localName = "getMadeGameMovesResponse", targetNamespace = "http://communication.server.viruswar.com/", className = "com.viruswar.webservice.GetMadeGameMovesResponse")
     @Action(input = "http://communication.server.viruswar.com/ServerService/getMadeGameMovesRequest", output = "http://communication.server.viruswar.com/ServerService/getMadeGameMovesResponse")
     public List<MadeCommandsDto> getMadeGameMoves();
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns com.viruswar.webservice.ServerResponseDto
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "handleMoves", targetNamespace = "http://communication.server.viruswar.com/", className = "com.viruswar.webservice.HandleMoves")
+    @ResponseWrapper(localName = "handleMovesResponse", targetNamespace = "http://communication.server.viruswar.com/", className = "com.viruswar.webservice.HandleMovesResponse")
+    @Action(input = "http://communication.server.viruswar.com/ServerService/handleMovesRequest", output = "http://communication.server.viruswar.com/ServerService/handleMovesResponse")
+    public ServerResponseDto handleMoves(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0);
 
     /**
      * 
@@ -160,31 +121,13 @@ public interface ServerService {
      * @param arg0
      */
     @WebMethod
-    @RequestWrapper(localName = "sendCommand", targetNamespace = "http://communication.server.viruswar.com/", className = "com.viruswar.webservice.SendCommand")
-    @ResponseWrapper(localName = "sendCommandResponse", targetNamespace = "http://communication.server.viruswar.com/", className = "com.viruswar.webservice.SendCommandResponse")
-    @Action(input = "http://communication.server.viruswar.com/ServerService/sendCommandRequest", output = "http://communication.server.viruswar.com/ServerService/sendCommandResponse")
-    public void sendCommand(
+    @RequestWrapper(localName = "changeMovesPermitFlags", targetNamespace = "http://communication.server.viruswar.com/", className = "com.viruswar.webservice.ChangeMovesPermitFlags")
+    @ResponseWrapper(localName = "changeMovesPermitFlagsResponse", targetNamespace = "http://communication.server.viruswar.com/", className = "com.viruswar.webservice.ChangeMovesPermitFlagsResponse")
+    @Action(input = "http://communication.server.viruswar.com/ServerService/changeMovesPermitFlagsRequest", output = "http://communication.server.viruswar.com/ServerService/changeMovesPermitFlagsResponse")
+    public void changeMovesPermitFlags(
         @WebParam(name = "arg0", targetNamespace = "")
-        String arg0,
+        boolean arg0,
         @WebParam(name = "arg1", targetNamespace = "")
-        String arg1);
-
-    /**
-     * 
-     * @param arg2
-     * @param arg1
-     * @param arg0
-     */
-    @WebMethod
-    @RequestWrapper(localName = "handlerOfClient", targetNamespace = "http://communication.server.viruswar.com/", className = "com.viruswar.webservice.HandlerOfClient")
-    @ResponseWrapper(localName = "handlerOfClientResponse", targetNamespace = "http://communication.server.viruswar.com/", className = "com.viruswar.webservice.HandlerOfClientResponse")
-    @Action(input = "http://communication.server.viruswar.com/ServerService/handlerOfClientRequest", output = "http://communication.server.viruswar.com/ServerService/handlerOfClientResponse")
-    public void handlerOfClient(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0,
-        @WebParam(name = "arg1", targetNamespace = "")
-        String arg1,
-        @WebParam(name = "arg2", targetNamespace = "")
-        String arg2);
+        boolean arg1);
 
 }

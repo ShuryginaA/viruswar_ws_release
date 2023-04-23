@@ -36,18 +36,10 @@ public class ObjectFactory {
     private final static QName _GetMadeGameMovesResponse_QNAME = new QName("http://communication.server.viruswar.com/", "getMadeGameMovesResponse");
     private final static QName _HandleCrossMoves_QNAME = new QName("http://communication.server.viruswar.com/", "handleCrossMoves");
     private final static QName _HandleCrossMovesResponse_QNAME = new QName("http://communication.server.viruswar.com/", "handleCrossMovesResponse");
-    private final static QName _HandlerOfClient_QNAME = new QName("http://communication.server.viruswar.com/", "handlerOfClient");
-    private final static QName _HandlerOfClientResponse_QNAME = new QName("http://communication.server.viruswar.com/", "handlerOfClientResponse");
+    private final static QName _HandleMoves_QNAME = new QName("http://communication.server.viruswar.com/", "handleMoves");
+    private final static QName _HandleMovesResponse_QNAME = new QName("http://communication.server.viruswar.com/", "handleMovesResponse");
     private final static QName _IsMovePermit_QNAME = new QName("http://communication.server.viruswar.com/", "isMovePermit");
     private final static QName _IsMovePermitResponse_QNAME = new QName("http://communication.server.viruswar.com/", "isMovePermitResponse");
-    private final static QName _Run_QNAME = new QName("http://communication.server.viruswar.com/", "run");
-    private final static QName _RunResponse_QNAME = new QName("http://communication.server.viruswar.com/", "runResponse");
-    private final static QName _SendCommand_QNAME = new QName("http://communication.server.viruswar.com/", "sendCommand");
-    private final static QName _SendCommandResponse_QNAME = new QName("http://communication.server.viruswar.com/", "sendCommandResponse");
-    private final static QName _SendCommandToCross_QNAME = new QName("http://communication.server.viruswar.com/", "sendCommandToCross");
-    private final static QName _SendCommandToCrossResponse_QNAME = new QName("http://communication.server.viruswar.com/", "sendCommandToCrossResponse");
-    private final static QName _SendCommandToRound_QNAME = new QName("http://communication.server.viruswar.com/", "sendCommandToRound");
-    private final static QName _SendCommandToRoundResponse_QNAME = new QName("http://communication.server.viruswar.com/", "sendCommandToRoundResponse");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.viruswar.webservice
@@ -153,19 +145,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link HandlerOfClient }
+     * Create an instance of {@link HandleMoves }
      * 
      */
-    public HandlerOfClient createHandlerOfClient() {
-        return new HandlerOfClient();
+    public HandleMoves createHandleMoves() {
+        return new HandleMoves();
     }
 
     /**
-     * Create an instance of {@link HandlerOfClientResponse }
+     * Create an instance of {@link HandleMovesResponse }
      * 
      */
-    public HandlerOfClientResponse createHandlerOfClientResponse() {
-        return new HandlerOfClientResponse();
+    public HandleMovesResponse createHandleMovesResponse() {
+        return new HandleMovesResponse();
     }
 
     /**
@@ -182,70 +174,6 @@ public class ObjectFactory {
      */
     public IsMovePermitResponse createIsMovePermitResponse() {
         return new IsMovePermitResponse();
-    }
-
-    /**
-     * Create an instance of {@link Run }
-     * 
-     */
-    public Run createRun() {
-        return new Run();
-    }
-
-    /**
-     * Create an instance of {@link RunResponse }
-     * 
-     */
-    public RunResponse createRunResponse() {
-        return new RunResponse();
-    }
-
-    /**
-     * Create an instance of {@link SendCommand }
-     * 
-     */
-    public SendCommand createSendCommand() {
-        return new SendCommand();
-    }
-
-    /**
-     * Create an instance of {@link SendCommandResponse }
-     * 
-     */
-    public SendCommandResponse createSendCommandResponse() {
-        return new SendCommandResponse();
-    }
-
-    /**
-     * Create an instance of {@link SendCommandToCross }
-     * 
-     */
-    public SendCommandToCross createSendCommandToCross() {
-        return new SendCommandToCross();
-    }
-
-    /**
-     * Create an instance of {@link SendCommandToCrossResponse }
-     * 
-     */
-    public SendCommandToCrossResponse createSendCommandToCrossResponse() {
-        return new SendCommandToCrossResponse();
-    }
-
-    /**
-     * Create an instance of {@link SendCommandToRound }
-     * 
-     */
-    public SendCommandToRound createSendCommandToRound() {
-        return new SendCommandToRound();
-    }
-
-    /**
-     * Create an instance of {@link SendCommandToRoundResponse }
-     * 
-     */
-    public SendCommandToRoundResponse createSendCommandToRoundResponse() {
-        return new SendCommandToRoundResponse();
     }
 
     /**
@@ -421,29 +349,29 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link HandlerOfClient }{@code >}
+     * Create an instance of {@link JAXBElement }{@code <}{@link HandleMoves }{@code >}
      * 
      * @param value
      *     Java instance representing xml element's value.
      * @return
-     *     the new instance of {@link JAXBElement }{@code <}{@link HandlerOfClient }{@code >}
+     *     the new instance of {@link JAXBElement }{@code <}{@link HandleMoves }{@code >}
      */
-    @XmlElementDecl(namespace = "http://communication.server.viruswar.com/", name = "handlerOfClient")
-    public JAXBElement<HandlerOfClient> createHandlerOfClient(HandlerOfClient value) {
-        return new JAXBElement<HandlerOfClient>(_HandlerOfClient_QNAME, HandlerOfClient.class, null, value);
+    @XmlElementDecl(namespace = "http://communication.server.viruswar.com/", name = "handleMoves")
+    public JAXBElement<HandleMoves> createHandleMoves(HandleMoves value) {
+        return new JAXBElement<HandleMoves>(_HandleMoves_QNAME, HandleMoves.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link HandlerOfClientResponse }{@code >}
+     * Create an instance of {@link JAXBElement }{@code <}{@link HandleMovesResponse }{@code >}
      * 
      * @param value
      *     Java instance representing xml element's value.
      * @return
-     *     the new instance of {@link JAXBElement }{@code <}{@link HandlerOfClientResponse }{@code >}
+     *     the new instance of {@link JAXBElement }{@code <}{@link HandleMovesResponse }{@code >}
      */
-    @XmlElementDecl(namespace = "http://communication.server.viruswar.com/", name = "handlerOfClientResponse")
-    public JAXBElement<HandlerOfClientResponse> createHandlerOfClientResponse(HandlerOfClientResponse value) {
-        return new JAXBElement<HandlerOfClientResponse>(_HandlerOfClientResponse_QNAME, HandlerOfClientResponse.class, null, value);
+    @XmlElementDecl(namespace = "http://communication.server.viruswar.com/", name = "handleMovesResponse")
+    public JAXBElement<HandleMovesResponse> createHandleMovesResponse(HandleMovesResponse value) {
+        return new JAXBElement<HandleMovesResponse>(_HandleMovesResponse_QNAME, HandleMovesResponse.class, null, value);
     }
 
     /**
@@ -470,110 +398,6 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://communication.server.viruswar.com/", name = "isMovePermitResponse")
     public JAXBElement<IsMovePermitResponse> createIsMovePermitResponse(IsMovePermitResponse value) {
         return new JAXBElement<IsMovePermitResponse>(_IsMovePermitResponse_QNAME, IsMovePermitResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Run }{@code >}
-     * 
-     * @param value
-     *     Java instance representing xml element's value.
-     * @return
-     *     the new instance of {@link JAXBElement }{@code <}{@link Run }{@code >}
-     */
-    @XmlElementDecl(namespace = "http://communication.server.viruswar.com/", name = "run")
-    public JAXBElement<Run> createRun(Run value) {
-        return new JAXBElement<Run>(_Run_QNAME, Run.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link RunResponse }{@code >}
-     * 
-     * @param value
-     *     Java instance representing xml element's value.
-     * @return
-     *     the new instance of {@link JAXBElement }{@code <}{@link RunResponse }{@code >}
-     */
-    @XmlElementDecl(namespace = "http://communication.server.viruswar.com/", name = "runResponse")
-    public JAXBElement<RunResponse> createRunResponse(RunResponse value) {
-        return new JAXBElement<RunResponse>(_RunResponse_QNAME, RunResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link SendCommand }{@code >}
-     * 
-     * @param value
-     *     Java instance representing xml element's value.
-     * @return
-     *     the new instance of {@link JAXBElement }{@code <}{@link SendCommand }{@code >}
-     */
-    @XmlElementDecl(namespace = "http://communication.server.viruswar.com/", name = "sendCommand")
-    public JAXBElement<SendCommand> createSendCommand(SendCommand value) {
-        return new JAXBElement<SendCommand>(_SendCommand_QNAME, SendCommand.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link SendCommandResponse }{@code >}
-     * 
-     * @param value
-     *     Java instance representing xml element's value.
-     * @return
-     *     the new instance of {@link JAXBElement }{@code <}{@link SendCommandResponse }{@code >}
-     */
-    @XmlElementDecl(namespace = "http://communication.server.viruswar.com/", name = "sendCommandResponse")
-    public JAXBElement<SendCommandResponse> createSendCommandResponse(SendCommandResponse value) {
-        return new JAXBElement<SendCommandResponse>(_SendCommandResponse_QNAME, SendCommandResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link SendCommandToCross }{@code >}
-     * 
-     * @param value
-     *     Java instance representing xml element's value.
-     * @return
-     *     the new instance of {@link JAXBElement }{@code <}{@link SendCommandToCross }{@code >}
-     */
-    @XmlElementDecl(namespace = "http://communication.server.viruswar.com/", name = "sendCommandToCross")
-    public JAXBElement<SendCommandToCross> createSendCommandToCross(SendCommandToCross value) {
-        return new JAXBElement<SendCommandToCross>(_SendCommandToCross_QNAME, SendCommandToCross.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link SendCommandToCrossResponse }{@code >}
-     * 
-     * @param value
-     *     Java instance representing xml element's value.
-     * @return
-     *     the new instance of {@link JAXBElement }{@code <}{@link SendCommandToCrossResponse }{@code >}
-     */
-    @XmlElementDecl(namespace = "http://communication.server.viruswar.com/", name = "sendCommandToCrossResponse")
-    public JAXBElement<SendCommandToCrossResponse> createSendCommandToCrossResponse(SendCommandToCrossResponse value) {
-        return new JAXBElement<SendCommandToCrossResponse>(_SendCommandToCrossResponse_QNAME, SendCommandToCrossResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link SendCommandToRound }{@code >}
-     * 
-     * @param value
-     *     Java instance representing xml element's value.
-     * @return
-     *     the new instance of {@link JAXBElement }{@code <}{@link SendCommandToRound }{@code >}
-     */
-    @XmlElementDecl(namespace = "http://communication.server.viruswar.com/", name = "sendCommandToRound")
-    public JAXBElement<SendCommandToRound> createSendCommandToRound(SendCommandToRound value) {
-        return new JAXBElement<SendCommandToRound>(_SendCommandToRound_QNAME, SendCommandToRound.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link SendCommandToRoundResponse }{@code >}
-     * 
-     * @param value
-     *     Java instance representing xml element's value.
-     * @return
-     *     the new instance of {@link JAXBElement }{@code <}{@link SendCommandToRoundResponse }{@code >}
-     */
-    @XmlElementDecl(namespace = "http://communication.server.viruswar.com/", name = "sendCommandToRoundResponse")
-    public JAXBElement<SendCommandToRoundResponse> createSendCommandToRoundResponse(SendCommandToRoundResponse value) {
-        return new JAXBElement<SendCommandToRoundResponse>(_SendCommandToRoundResponse_QNAME, SendCommandToRoundResponse.class, null, value);
     }
 
 }

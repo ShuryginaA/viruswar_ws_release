@@ -22,7 +22,7 @@ public class CommandsSender {
     }
 
     private ServerResponseDto sendGameCommand(String command) {
-        return serverService.run(command);
+        return serverService.handleMoves(command);
     }
 
     public ServerResponseDto SendCommand(String command) {

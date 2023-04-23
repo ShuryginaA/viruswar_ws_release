@@ -21,11 +21,10 @@ public class GameFieldService {
     public static final String[] rows = new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
     public static final String[] colums = new String[]{"a", "b", "c", "d", "e", "f", "g", "h", "i", "k"};
     public static final ArrayList<Integer> trickyCellCoordCross
-            = new ArrayList<>(Arrays.asList(2, 7, 12, 17, 22, 27));
+            = new ArrayList<>(Arrays.asList(2, 7, 13, 16, 22, 27));
     public static final ArrayList<Integer> trickyCellCoordRound
-            = new ArrayList<>(Arrays.asList(4, 9, 14, 19, 24, 29, 34));
+            = new ArrayList<>(Arrays.asList(4, 10, 13, 19, 24, 29, 34));
     public static final int NUM_OF_COLUMNS = 10;
-    public static final int NUM_OF_ROWS = 10;
     public static final Map<String, Map<String, CELL_STATE>> GAME_STATE_INIT;
     public static CellDirects[][] directions;
 
@@ -33,12 +32,13 @@ public class GameFieldService {
     }
 
     public static void clearDirects() {
+        int j=0;
         for (int i = 0; i < 10; ++i) {
-            for (int j = 0; j < 10; ++j) {
+            while(j<10){
                 directions[i][j].clearCellDirects();
+                j++;
             }
         }
-
     }
 
     public static void pourDirectsForCell(String group_name, int row, int col, Map<String, Map<String, GameFieldService.CELL_STATE>> game_state) {
@@ -62,17 +62,6 @@ public class GameFieldService {
                 for (j = col - 1; j <= col + 1; ++j) {
                     if (i != row || j != col) {
                         iterator++;
-                    }
-
-                    if ((i != row || j != col) && i > 0 && i <= 10 && j >= 0 && j < 10) {
-                        System.out.println(i);
-                        System.out.println(colums[j]);
-                        System.out.println(((Map) game_state.get(Integer.toString(i))).get(colums[j]));
-                        if ((((Map) game_state.get(Integer.toString(i))).get(colums[j])).equals(GameFieldService.CELL_STATE.CROSS_KILLED)) {
-                            directions[row - 1][col].directions[iterator].row = i;
-                            directions[row - 1][col].directions[iterator].column = j;
-                            System.out.println("5");
-                        }
                     }
                 }
             }
@@ -100,8 +89,7 @@ public class GameFieldService {
             }
         }
 
-        Direction d = new Direction();
-        return d;
+        return new Direction();
     }
 
     static {

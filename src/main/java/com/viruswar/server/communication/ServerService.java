@@ -9,13 +9,7 @@ import com.viruswar.webservice.ServerResponseDto;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.net.Socket;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import static com.viruswar.server.Server.CROSS_VIRUS;
 import static com.viruswar.server.Server.ROUND_VIRUS;
@@ -23,29 +17,19 @@ import static com.viruswar.server.util.GameRulesService.num_turn;
 
 @WebService
 public class ServerService {
-
-    Socket cs;
-    String group_name = "";
-    
-    OutputStream cos = null;
     private Map<String, Map<String, GameFieldService.CELL_STATE>> GameState = GameFieldService.GAME_STATE_INIT;
 
-    int num_rounds = 1; // Current number of toes in game
-    int num_cross = 1; // -//- tics
+    int num_rounds = 1;
+    int num_cross = 1;
 
-    ClientGameCommandDto CGC;
+    ClientGameCommandDto clientGameCommandDtoCross = new ClientGameCommandDto();
+    ClientGameCommandDto clientGameCommandDtoRound = new ClientGameCommandDto();
 
-    ClientGameCommandDto CGC_cross = new ClientGameCommandDto();
-    ClientGameCommandDto CGC_round = new ClientGameCommandDto();
-
-    ClientGameCommandDto MyMoves[] = new ClientGameCommandDto[3];
+    ClientGameCommandDto moves[] = new ClientGameCommandDto[3];
     List<MadeCommandsDto> madeMovesForClient = new ArrayList<>();
 
     int count_turn_cross = 1;
     int count_turn_round = 1;
-
-    int countfornemysend_cross = 1; // delete_me
-    int countfornemysend_round = 1; // delete_me
 
     boolean isCrossPicked = false;
     boolean isRoundPicked = false;
@@ -56,19 +40,10 @@ public class ServerService {
 
     public ServerService() {
         for(int i = 0; i < 3; i++) {
-            MyMoves[i] = new ClientGameCommandDto();
+            moves[i] = new ClientGameCommandDto();
         }
 
         num_turn = 1;
-    }
-
-    @WebMethod
-    public void sendCommand(String command, String groupName) {
-        if (groupName.equals(CROSS_VIRUS)) {
-            sendCommandToCross(command);
-        } else if(groupName.equals(ROUND_VIRUS)) {
-            sendCommandToRound(command);
-        }
     }
 
     @WebMethod
@@ -92,40 +67,13 @@ public class ServerService {
     }
 
     @WebMethod
-    public void sendCommandToCross(String command) {
-        if (cs != null) {
-            DataOutputStream cdos = new DataOutputStream(cos);
-            try {
-                cdos.writeUTF(command);
-                String info = "Game command " + command + " send to cross";
-            } catch (IOException ex) {
-                Logger.getLogger(ServerService.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }
-
-    @WebMethod
-    public void sendCommandToRound(String command) {
-        if (cs != null) {
-            DataOutputStream cdos = new DataOutputStream(cos);
-            try {
-                cdos.writeUTF(command);
-                String info = "Game command " + command + " send to toes";
-            } catch (IOException ex) {
-                Logger.getLogger(ServerService.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-        }
-    }
-
-    @WebMethod
-    public ServerResponseDto run(String command) {
+    public ServerResponseDto handleMoves(String command) {
         if (!GameRulesService.checkGameEnded(num_cross, num_rounds)) {
             if (GameRulesService.findWhoseTurn().equals(CROSS_VIRUS)) {
                 count_turn_round = 0;
                 IsInit = false;
-                CGC_cross.command=command;
-                CGC_cross.group_name = "cross";
+                clientGameCommandDtoCross.command=command;
+                clientGameCommandDtoCross.group_name = "cross";
                 return handleCrossMoves();
             } else if (GameRulesService.findWhoseTurn().equals(ROUND_VIRUS)) {
 
@@ -138,8 +86,8 @@ public class ServerService {
 
                 IsFirstMoveRound = false;
                 IsInit = false;
-                CGC_round.command=command;
-                CGC_round.group_name = "round";
+                clientGameCommandDtoRound.command=command;
+                clientGameCommandDtoRound.group_name = "round";
                 return handleRoundMoves();
             }
                return Draw();
@@ -153,12 +101,6 @@ public class ServerService {
         return madeMovesForClient;
     }
 
-    @WebMethod
-    public void handlerOfClient(String command_info, String command, String group_name) {
-        if(command_info.equals("GI")) {
-            HandleGameCommand(command);
-        }
-    }
     @WebMethod
     public boolean checkGameEnded() {
        return GameRulesService.checkGameEnded(num_cross, num_rounds);
@@ -188,12 +130,12 @@ public class ServerService {
         String myMovesForClientInfoTurn;
         String myMovesForClientCommand = null;
         ServerResponseDto serverResponseDto = new ServerResponseDto();
-        String row = getSubstringOfGameCommand(CGC_cross.command, ":", 0);
-        String col = getSubstringOfGameCommand(CGC_cross.command, ":", 1);
+        String row = getSubstringOfGameCommand(clientGameCommandDtoCross.command, ":", 0);
+        String col = getSubstringOfGameCommand(clientGameCommandDtoCross.command, ":", 1);
 
-        if (GameRulesService.isCellAccessible(CGC_cross.group_name, row, col, GameState)) {
+        if (GameRulesService.isCellAccessible(clientGameCommandDtoCross.group_name, row, col, GameState)) {
             GameFieldService.CELL_STATE state = GameRulesService.getValue(row, col, GameState);
-            MyMoves[count_turn_cross].command = CGC_cross.command;
+            moves[count_turn_cross].command = clientGameCommandDtoCross.command;
             count_turn_cross++;
 
             if (state.equals(GameFieldService.CELL_STATE.CELL_EMPTY)) {
@@ -207,10 +149,10 @@ public class ServerService {
 
                 GameRulesService.occupyCell(row, col, GameState, CROSS_VIRUS);
                 serverResponseDto.setCommand("CA");
-                serverResponseDto.setCommandCoord(CGC_cross.command);
-                myMovesForClientCommandCoord = CGC_cross.command;
+                serverResponseDto.setCommandCoord(clientGameCommandDtoCross.command);
+                myMovesForClientCommandCoord = clientGameCommandDtoCross.command;
                 myMovesForClientCommand = "CA";
-                MyMoves[count_turn_cross - 1].status = "X";
+                moves[count_turn_cross - 1].status = "X";
             } else if (state.equals(GameFieldService.CELL_STATE.ROUND_HERE)) {
                 num_turn++;
 
@@ -218,11 +160,11 @@ public class ServerService {
                 num_rounds--;
 
                 serverResponseDto.setCommand("KTO");
-                serverResponseDto.setCommandCoord(CGC_cross.command);
+                serverResponseDto.setCommandCoord(clientGameCommandDtoCross.command);
                 myMovesForClientCommand = "KTO";
-                myMovesForClientCommandCoord = CGC_cross.command;
-                serverResponseDto.setCommandCoord(CGC_cross.command);
-                MyMoves[count_turn_cross - 1].status = "KO";
+                myMovesForClientCommandCoord = clientGameCommandDtoCross.command;
+                serverResponseDto.setCommandCoord(clientGameCommandDtoCross.command);
+                moves[count_turn_cross - 1].status = "KO";
             }
 
             if (count_turn_cross < 3) {
@@ -250,12 +192,12 @@ public class ServerService {
         String myMovesForClientInfoTurn;
         String myMovesForClientCommand = null;
         ServerResponseDto serverResponseDto = new ServerResponseDto();
-        String row = getSubstringOfGameCommand(CGC_round.command, ":", 0);
-        String col = getSubstringOfGameCommand(CGC_round.command, ":", 1);
+        String row = getSubstringOfGameCommand(clientGameCommandDtoRound.command, ":", 0);
+        String col = getSubstringOfGameCommand(clientGameCommandDtoRound.command, ":", 1);
 
-        if (GameRulesService.isCellAccessible(CGC_round.group_name, row, col, GameState)) {
+        if (GameRulesService.isCellAccessible(clientGameCommandDtoRound.group_name, row, col, GameState)) {
             GameFieldService.CELL_STATE state = GameRulesService.getValue(row, col, GameState);
-            MyMoves[count_turn_round].command = CGC_round.command;
+            moves[count_turn_round].command = clientGameCommandDtoRound.command;
             count_turn_round++;
 
             if (state.equals(GameFieldService.CELL_STATE.CELL_EMPTY)) {
@@ -269,10 +211,10 @@ public class ServerService {
 
                 GameRulesService.occupyCell(row, col, GameState, ROUND_VIRUS);
                 serverResponseDto.setCommand("CA");
-                serverResponseDto.setCommandCoord(CGC_round.command);
-                myMovesForClientCommandCoord = CGC_round.command;
+                serverResponseDto.setCommandCoord(clientGameCommandDtoRound.command);
+                myMovesForClientCommandCoord = clientGameCommandDtoRound.command;
                 myMovesForClientCommand = "CA";
-                MyMoves[count_turn_round - 1].status = "O";
+                moves[count_turn_round - 1].status = "O";
             } else if (state.equals(GameFieldService.CELL_STATE.CROSS_HERE)) {
                 num_turn++;
 
@@ -280,9 +222,9 @@ public class ServerService {
                 num_cross--;
                 serverResponseDto.setCommand("KTI");
                 myMovesForClientCommand = "KTI";
-                myMovesForClientCommandCoord = CGC_round.command;
-                serverResponseDto.setCommandCoord(CGC_round.command);
-                MyMoves[count_turn_round - 1].status = "KX";
+                myMovesForClientCommandCoord = clientGameCommandDtoRound.command;
+                serverResponseDto.setCommandCoord(clientGameCommandDtoRound.command);
+                moves[count_turn_round - 1].status = "KX";
             }
 
             if (count_turn_round < 3) {
@@ -308,47 +250,6 @@ public class ServerService {
         ServerResponseDto responseDto = new ServerResponseDto();
         responseDto.setCommand("DRAW");
         return responseDto;
-    }
-
-    private void Deliverance(String _winner) {
-        if (_winner.equals(CROSS_VIRUS)) {
-            sendCommand("WIN", CGC_cross.group_name);
-            sendCommand("LOSE", CGC_round.group_name);
-        } else {
-            sendCommand("LOSE", CGC_cross.group_name);
-            sendCommand("WIN", CGC_round.group_name);
-        }
-    }
-
-    private void SendEnemyMoves(String enemy) {
-        if (enemy.equals(CROSS_VIRUS)) {
-            if (count_turn_cross > 0) {
-                sendCommand("EM", CGC_round.group_name);
-                sendCommand(Integer.toString(count_turn_cross - countfornemysend_cross), CGC_round.group_name);
-                for (int i = countfornemysend_cross; i < count_turn_cross; i++) {
-                    sendCommand(MyMoves[i].command, CGC_round.group_name);
-                    sendCommand(MyMoves[i].status, CGC_round.group_name);
-                }
-
-                countfornemysend_round = 0;
-            }
-        } else {
-            if (count_turn_round > 0) {
-                sendCommand("EM",CGC_cross.group_name);
-                sendCommand(Integer.toString(count_turn_round - countfornemysend_cross),CGC_cross.group_name);
-
-                for (int i = countfornemysend_cross; i < count_turn_round; i++) {
-                    sendCommand(MyMoves[i].command, CGC_cross.group_name);
-                    sendCommand(MyMoves[i].status, CGC_cross.group_name);
-                }
-
-                countfornemysend_cross = 0;
-            }
-        }
-    }
-    private void HandleGameCommand(String command) {
-        CGC.command = command;
-        CGC.group_name = group_name;
     }
 
 }

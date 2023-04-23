@@ -52,7 +52,6 @@ public class HandleEnemyMovesThread extends Thread {
                 serverResponseDto.setInfoTurn(firstMove.getMyMovesForClientInfoTurn());
                 serverResponseDto.setCommandCoord(firstMove.getMyMovesForClientCommandCoord());
                 serverResponseDto.setCommand(firstMove.getMyMovesForClientCommand());
-                System.out.println(madeMovesForClient.size() + " " + movesForClient.size());
                 ClientForm.commandsHandler.handleEnemyCommand(serverResponseDto, findRealTurn());
                 firstMoveFlag = false;
             }
@@ -64,7 +63,6 @@ public class HandleEnemyMovesThread extends Thread {
                     serverResponseDto.setInfoTurn(lastMove.getMyMovesForClientInfoTurn());
                     serverResponseDto.setCommandCoord(lastMove.getMyMovesForClientCommandCoord());
                     serverResponseDto.setCommand(lastMove.getMyMovesForClientCommand());
-                    System.out.println(madeMovesForClient.size() + " " + movesForClient.size());
                     madeMovesForClient.add(movesForClient.get(movesForClient.size()-1));
                     ClientForm.commandsHandler.handleEnemyCommand(serverResponseDto, findRealTurn());
                 }}
