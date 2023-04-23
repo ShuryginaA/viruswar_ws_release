@@ -27,6 +27,21 @@ public interface ServerService {
 
     /**
      * 
+     * @param arg1
+     * @param arg0
+     */
+    @WebMethod
+    @RequestWrapper(localName = "changeMovesPermitFlags", targetNamespace = "http://communication.server.viruswar.com/", className = "com.viruswar.webservice.ChangeMovesPermitFlags")
+    @ResponseWrapper(localName = "changeMovesPermitFlagsResponse", targetNamespace = "http://communication.server.viruswar.com/", className = "com.viruswar.webservice.ChangeMovesPermitFlagsResponse")
+    @Action(input = "http://communication.server.viruswar.com/ServerService/changeMovesPermitFlagsRequest", output = "http://communication.server.viruswar.com/ServerService/changeMovesPermitFlagsResponse")
+    public void changeMovesPermitFlags(
+        @WebParam(name = "arg0", targetNamespace = "")
+        boolean arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        boolean arg1);
+
+    /**
+     * 
      * @return
      *     returns boolean
      */
@@ -36,18 +51,6 @@ public interface ServerService {
     @ResponseWrapper(localName = "checkGameEndedResponse", targetNamespace = "http://communication.server.viruswar.com/", className = "com.viruswar.webservice.CheckGameEndedResponse")
     @Action(input = "http://communication.server.viruswar.com/ServerService/checkGameEndedRequest", output = "http://communication.server.viruswar.com/ServerService/checkGameEndedResponse")
     public boolean checkGameEnded();
-
-    /**
-     * 
-     * @return
-     *     returns java.lang.String
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "findWhoseTurn", targetNamespace = "http://communication.server.viruswar.com/", className = "com.viruswar.webservice.FindWhoseTurn")
-    @ResponseWrapper(localName = "findWhoseTurnResponse", targetNamespace = "http://communication.server.viruswar.com/", className = "com.viruswar.webservice.FindWhoseTurnResponse")
-    @Action(input = "http://communication.server.viruswar.com/ServerService/findWhoseTurnRequest", output = "http://communication.server.viruswar.com/ServerService/findWhoseTurnResponse")
-    public String findWhoseTurn();
 
     /**
      * 
@@ -79,6 +82,30 @@ public interface ServerService {
     /**
      * 
      * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "findWhoseTurn", targetNamespace = "http://communication.server.viruswar.com/", className = "com.viruswar.webservice.FindWhoseTurn")
+    @ResponseWrapper(localName = "findWhoseTurnResponse", targetNamespace = "http://communication.server.viruswar.com/", className = "com.viruswar.webservice.FindWhoseTurnResponse")
+    @Action(input = "http://communication.server.viruswar.com/ServerService/findWhoseTurnRequest", output = "http://communication.server.viruswar.com/ServerService/findWhoseTurnResponse")
+    public String findWhoseTurn();
+
+    /**
+     * 
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getClientGroup", targetNamespace = "http://communication.server.viruswar.com/", className = "com.viruswar.webservice.GetClientGroup")
+    @ResponseWrapper(localName = "getClientGroupResponse", targetNamespace = "http://communication.server.viruswar.com/", className = "com.viruswar.webservice.GetClientGroupResponse")
+    @Action(input = "http://communication.server.viruswar.com/ServerService/getClientGroupRequest", output = "http://communication.server.viruswar.com/ServerService/getClientGroupResponse")
+    public String getClientGroup();
+
+    /**
+     * 
+     * @return
      *     returns java.util.List<com.viruswar.webservice.MadeCommandsDto>
      */
     @WebMethod
@@ -102,32 +129,5 @@ public interface ServerService {
     public ServerResponseDto handleMoves(
         @WebParam(name = "arg0", targetNamespace = "")
         String arg0);
-
-    /**
-     * 
-     * @return
-     *     returns java.lang.String
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getClientGroup", targetNamespace = "http://communication.server.viruswar.com/", className = "com.viruswar.webservice.GetClientGroup")
-    @ResponseWrapper(localName = "getClientGroupResponse", targetNamespace = "http://communication.server.viruswar.com/", className = "com.viruswar.webservice.GetClientGroupResponse")
-    @Action(input = "http://communication.server.viruswar.com/ServerService/getClientGroupRequest", output = "http://communication.server.viruswar.com/ServerService/getClientGroupResponse")
-    public String getClientGroup();
-
-    /**
-     * 
-     * @param arg1
-     * @param arg0
-     */
-    @WebMethod
-    @RequestWrapper(localName = "changeMovesPermitFlags", targetNamespace = "http://communication.server.viruswar.com/", className = "com.viruswar.webservice.ChangeMovesPermitFlags")
-    @ResponseWrapper(localName = "changeMovesPermitFlagsResponse", targetNamespace = "http://communication.server.viruswar.com/", className = "com.viruswar.webservice.ChangeMovesPermitFlagsResponse")
-    @Action(input = "http://communication.server.viruswar.com/ServerService/changeMovesPermitFlagsRequest", output = "http://communication.server.viruswar.com/ServerService/changeMovesPermitFlagsResponse")
-    public void changeMovesPermitFlags(
-        @WebParam(name = "arg0", targetNamespace = "")
-        boolean arg0,
-        @WebParam(name = "arg1", targetNamespace = "")
-        boolean arg1);
 
 }

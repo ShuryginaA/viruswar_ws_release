@@ -32,8 +32,8 @@ public class Server {
         ServerCommand(String name) {
             commandName = name;
         }
-        public String getCommandName(){
-            return commandName;
+        public static ServerCommand getCommandName(String value){
+            return ServerCommand.valueOf(value);
         }
     }
 

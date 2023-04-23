@@ -186,7 +186,6 @@ public class ClientForm extends javax.swing.JFrame {
                 CommandsSender SR = new CommandsSender(jTextArea1);
                 commandsHandler.group_name = serverService.findWhoseTurn();
                 commandsHandler.handleCommandServer(SR.SendCommand(command));
-                System.out.println("Why??? " + serverService.isMovePermit(clientGroup));
             } else {
                 LoggingService.logging("Сейчас ход вашего противника!", jTextArea1, MY_NAME);
             }
