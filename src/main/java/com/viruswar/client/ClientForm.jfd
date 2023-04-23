@@ -1,0 +1,225 @@
+JFDML JFormDesigner: "8.0.3.0.246" Java: "11.0.12" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq t {space :p:24:p, comp jScrollPane1:::p::p, par l {seq l {space :p:71:p, comp jScrollPane2:::p:251:p, space :::x}, seq t {space ::167:x, comp jLabel1:::p::p, space :p:362:p}}}, seq {space :p:182:p, comp jLabel2:::p::p, space ::795:x}}"
+			"$verticalGroup": "par l {seq t {space ::19:x, par b {comp jLabel2::b:p:47:p, comp jLabel1::b:p::p}, space s:::p, par l {comp jScrollPane2:::p:371:p, comp jScrollPane1:::p:377:p}, space :p:26:p}}"
+		} ) {
+			name: "this"
+			"defaultCloseOperation": 3
+			addEvent( new FormEvent( "java.awt.event.WindowListener", "windowClosing", "formWindowClosing", true ) )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "jScrollPane1"
+				add( new FormComponent( "javax.swing.JTable" ) {
+					name: "jTable1"
+					"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector {
+						add( new java.util.Vector {
+							add( "1" )
+							add( "X" )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+						} )
+						add( new java.util.Vector {
+							add( "2" )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+						} )
+						add( new java.util.Vector {
+							add( "3" )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+						} )
+						add( new java.util.Vector {
+							add( "4" )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+						} )
+						add( new java.util.Vector {
+							add( "5" )
+							add( null )
+							add( null )
+							add( null )
+							add( "" )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+						} )
+						add( new java.util.Vector {
+							add( "6" )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+						} )
+						add( new java.util.Vector {
+							add( "7" )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+						} )
+						add( new java.util.Vector {
+							add( "8" )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+						} )
+						add( new java.util.Vector {
+							add( "9" )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+						} )
+						add( new java.util.Vector {
+							add( "10" )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( "O" )
+						} )
+					}, new java.util.Vector {
+						add( "" )
+						add( "a" )
+						add( "b" )
+						add( "c" )
+						add( "d" )
+						add( "e" )
+						add( "f" )
+						add( "g" )
+						add( "h" )
+						add( "i" )
+						add( "k" )
+					}, new java.util.Vector {
+						add( class java.lang.Object )
+						add( class java.lang.Object )
+						add( class java.lang.Object )
+						add( class java.lang.Object )
+						add( class java.lang.Object )
+						add( class java.lang.Object )
+						add( class java.lang.Object )
+						add( class java.lang.Object )
+						add( class java.lang.Object )
+						add( class java.lang.Object )
+						add( class java.lang.Object )
+					}, new java.util.Vector {
+						add( true )
+						add( true )
+						add( true )
+						add( true )
+						add( true )
+						add( true )
+						add( true )
+						add( true )
+						add( true )
+						add( true )
+						add( true )
+					}, new java.util.Vector {
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+					} )
+					"columnSelectionAllowed": true
+					"enabled": false
+					"rowHeight": 34
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "ClickOnCellMouseClicked", true ) )
+				} )
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "jScrollPane2"
+				add( new FormComponent( "javax.swing.JTextArea" ) {
+					name: "jTextArea1"
+					"editable": false
+					"columns": 20
+					"rows": 5
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "jLabel1"
+				"text": "Подсказки"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "jLabel2"
+				"font": new java.awt.Font( "Terminator Two", 0, 13 )
+				"text": "Война вирусов"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+		} )
+	}
+}
